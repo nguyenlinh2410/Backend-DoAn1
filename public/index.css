@@ -1,0 +1,41 @@
+.data {
+  margin: 5px;
+}
+
+.mang {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.xoa,
+.sua {
+  border: 1px solid black;
+  background: rgb(189, 184, 184);
+  color: black;
+  text-decoration: none;
+  display: inline-block;
+  width: 52px;
+  height: 22px;
+  text-align: center;
+}
+
+.xoa:hover {
+  opacity: 0.7;
+}
+.sua:hover {
+  opacity: 0.7;
+}
+
+.create {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.it {
+  margin: 5px;
+}
