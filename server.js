@@ -3,8 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
 import { fileURLToPath } from "url";
-import PersonRoutes from "./routes/PersonRoutes.js";
-import UserRoutes from "./routes/UserRoutes.js"
+import UserRoutes from "./routes/UserRoutes.js";
 
 // Tạo app Express
 const app = express();
@@ -30,8 +29,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 // API routes
-app.use("/", PersonRoutes);
-app.use("/",UserRoutes)
+app.use("/", UserRoutes);
 
 // Cấu hình view engine
 app.set("view engine", "ejs");
