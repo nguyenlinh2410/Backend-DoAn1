@@ -1,6 +1,5 @@
 import bcrypt from "bcrypt";
-import { Users } from "../models/userModel.js";
-import { name } from "ejs";
+import Admin from "../models/admin.js";
 
 export const createUser = async (req, res) => {
   try {
@@ -11,7 +10,7 @@ export const createUser = async (req, res) => {
 
     //hash pass
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = await Users.create({
+    const user = await Admin.create({
       name,
       email,
       password: hashedPassword,
@@ -31,7 +30,7 @@ export const createUser = async (req, res) => {
 
 export const getAllUsers = async (req, res) => {
   try {
-    const users = await Users.findAll();
+    const users = await Admin.findAll();
     res.status(200).json(users);
   } catch (e) {
     console.error("Lỗi lấy danh sách user:", e);
@@ -50,13 +49,13 @@ export const deleteUsers = async (req, res) => {
         message: "id ko ton tai!",
       });
     }
-    const user = await Users.findByPk(id);
+    const user = await Admin.findByPk(id);
     if (!user) {
       return res.status(404).json({
         message: "user ko ton tai",
       });
     }
-    await Users.destroy({ where: { id } });
+    await Admin.destroy({ where: { id } });
     res.status(200).json({
       message: " delete user sucessfull",
     });
@@ -71,14 +70,13 @@ export const deleteUsers = async (req, res) => {
 export const updateUser = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
-    const { name, email, password } = req.body;
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const { name, email } = req.body;
     if (!id) {
       return res.status(400).json({
         message: "id ko ton tai!",
       });
     }
-    const user = await Users.findByPk(id);
+    const user = await Admin.findByPk(id);
     if (!user) {
       return res.status(404).json({
         message: "user ko ton tai",
@@ -87,7 +85,6 @@ export const updateUser = async (req, res) => {
     await user.update({
       name,
       email,
-      password: hashedPassword,
     });
 
     return res.status(200).json({
@@ -105,7 +102,7 @@ export const updateUser = async (req, res) => {
 export const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    const user = await Users.findByPk(id);
+    const user = await Admin.findByPk(id);
     if (!user) {
       return res.status(404).json({
         message: "user ko ton tai!",
@@ -123,7 +120,7 @@ export const getUserById = async (req, res) => {
 export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    const admin = await Users.findOne({ where: { email } });
+    const admin = await Admin.findOne({ where: { email } });
 
     if (!admin) {
       return res.status(401).json({ message: "Email không tồn tại" });
