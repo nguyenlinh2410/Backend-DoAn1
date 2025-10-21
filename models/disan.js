@@ -1,10 +1,8 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from "../config/db.js";
 
-export default (sequelize) => {
   class DiSan extends Model {
     static associate(models) {
-      DiSan.belongsTo(models.NgonNgu, { foreignKey: 'ngon_ngu_id' });
       DiSan.belongsTo(models.DanhMucDiSan, { foreignKey: 'danh_muc_id' });
     }
   }
@@ -14,8 +12,10 @@ export default (sequelize) => {
       tieu_de_vi: DataTypes.STRING,
       tieu_de_en: DataTypes.STRING,
       slug: DataTypes.STRING,
-      tom_tat: DataTypes.TEXT,
-      noi_dung: DataTypes.TEXT,
+      tom_tat_vi: DataTypes.TEXT,
+      tom_tat_en: DataTypes.TEXT,
+      noi_dung_vi: DataTypes.TEXT,
+      noi_dung_en: DataTypes.TEXT,
       hinh_anh: DataTypes.STRING
     },
     {
@@ -25,5 +25,4 @@ export default (sequelize) => {
     }
   );
 
-  return DiSan;
-};
+  export default DiSan;

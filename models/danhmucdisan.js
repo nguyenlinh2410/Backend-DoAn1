@@ -1,7 +1,6 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../config/db.js";
 
-export default (sequelize) => {
   class DanhMucDiSan extends Model {
     static associate(models) {
       DanhMucDiSan.hasMany(models.DiSan, { foreignKey: "danh_muc_id" });
@@ -21,5 +20,5 @@ export default (sequelize) => {
     }
   );
 
-  return DanhMucDiSan;
-};
+  export default DanhMucDiSan;
+
