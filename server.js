@@ -2,10 +2,11 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import path from "path";
+import multer from "multer"
 import { fileURLToPath } from "url";
 import UserRoutes from "./routes/UserRoutes.js";
 import DitichRoutes from "./routes/DitichRoutes.js";
-
+import DisanRoute from "./routes/DisanRoute.js"
 // Tạo app Express
 const app = express();
 dotenv.config();
@@ -32,6 +33,7 @@ app.use(express.static("public"));
 // API routes
 app.use("/", UserRoutes);
 app.use("/api/ditich", DitichRoutes);
+app.use("/api/disan", DisanRoute);
 
 // Cấu hình view engine
 app.set("view engine", "ejs");
