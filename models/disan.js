@@ -17,7 +17,12 @@ DiSan.init(
     noi_dung_vi: DataTypes.TEXT,
     noi_dung_en: DataTypes.TEXT,
     hinh_anh: DataTypes.STRING,
-    danh_muc_id: DataTypes.INTEGER,
+    danh_muc_id: {
+      type: DataTypes.INTEGER,
+      references: { model: "danh_muc_disan", key: "id" },
+      onUpdate: "CASCADE",
+      onDelete: "SET NULL",
+    },
   },
   {
     sequelize,
