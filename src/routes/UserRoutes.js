@@ -5,10 +5,11 @@ import {
   deleteUsers,
   updateUser,
   getUserById,
-  login,
+  login,createLienHe
 } from "../controllers/UserController.js";
 
 const router = express.Router();
+router.post("/api/create/lienhe", createLienHe);
 router.post("/api/create/users", createUser);
 router.get("/api/getAllusers", getAllUsers);
 router.delete("/api/deleteUser/:id", deleteUsers);

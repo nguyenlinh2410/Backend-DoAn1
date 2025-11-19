@@ -1,5 +1,29 @@
 import bcrypt from "bcrypt";
-import Admin from "../models/admin.js";
+import Admin from "../../models/admin.js";
+import LienHe from "../../models/lienhe.js";
+
+export const createLienHe = async (req, res) => {
+  try {
+    const { name,phone, email } = req.body;
+    
+    const user = await LienHe.create({
+      name,
+      phone,
+      email,
+    });
+
+    res.json({
+      message: "User created successfully",
+      user,
+    });
+  } catch (e) {
+    res.status(500).json({
+      error: e.message,
+    });
+    console.log(e);
+  }
+};
+
 
 export const createUser = async (req, res) => {
   try {

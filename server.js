@@ -4,9 +4,9 @@ import dotenv from "dotenv";
 import path from "path";
 import multer from "multer"
 import { fileURLToPath } from "url";
-import UserRoutes from "./routes/UserRoutes.js";
-import DitichRoutes from "./routes/DitichRoutes.js";
-import DisanRoute from "./routes/DisanRoute.js"
+import UserRoutes from "./src/routes/UserRoutes.js";
+import DitichRoutes from "./src/routes/DitichRoutes.js";
+import DisanRoute from "./src/routes/DisanRoute.js"
 // Tạo app Express
 const app = express();
 dotenv.config();

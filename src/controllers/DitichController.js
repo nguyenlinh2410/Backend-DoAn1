@@ -1,4 +1,4 @@
-import DiTich from "../models/ditich.js";
+import DiTich from "../../models/ditich.js";
 
 export const createDiTich = async (req, res) => {
   try {

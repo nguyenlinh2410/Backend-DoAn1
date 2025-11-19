@@ -1,6 +1,6 @@
-import DiSan from "../models/disan.js";
+import DiSan from "../../models/disan.js";
 import slugify from "slugify";
-import DanhMucDiSan from "../models/danhmucdisan.js";
+import DanhMucDiSan from "../../models/danhmucdisan.js";
 
 export const createDiSan = async (req, res) => {
   try {
