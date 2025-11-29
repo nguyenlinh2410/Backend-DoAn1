@@ -78,14 +78,16 @@ export const deleteDiTich = async (req, res) => {
 export const updateDiTich = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
-    const { tieu_de_vi,
+    const {
+      tieu_de_vi,
       tieu_de_en,
       slug,
       tom_tat_vi,
       tom_tat_en,
       noi_dung_vi,
       noi_dung_en,
-      hinh_anh, } = req.body;
+      hinh_anh,
+    } = req.body;
     if (!id) {
       return res.status(400).json({
         message: "id ko ton tai!",
@@ -124,6 +126,25 @@ export const getDiTichById = async (req, res) => {
   try {
     const { id } = req.params;
     const ditich = await DiTich.findByPk(id);
+    if (!ditich) {
+      return res.status(404).json({
+        message: "di tich ko ton tai!",
+      });
+    }
+    return res.status(200).json({ ditich });
+  } catch (e) {
+    console.error("Lỗi khi lấy di tich: ", e);
+    res.status(500).json({
+      message: "Error server",
+    });
+  }
+};
+export const getDiTichBySlug = async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const ditich = await DiTich.findOne({
+      where: { slug: slug },
+    });
     if (!ditich) {
       return res.status(404).json({
         message: "di tich ko ton tai!",
