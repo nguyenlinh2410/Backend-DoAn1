@@ -64,6 +64,29 @@ export const getDanhMuc = async (req, res) => {
   }
 };
 
+export const getByDanhMuc = async (req, res) => {
+  try {
+    const { danh_muc_id } = req.params;
+    const list = await DiSan.findAll({
+      where: { danh_muc_id: danh_muc_id },
+    });
+    res.status(200).json(list);
+  } catch (e) {
+    res.status(500).json({ error: error.mesage });
+  }
+};
+
+export const getByDiSanBySlug = async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const disan = await DiSan.findOne({ where: { slug } });
+    if (!disan) return res.status(404).json({ message: "Not found" });
+    res.json(disan);
+  } catch (e) {
+    res.status(500).json({ error: error.mesage });
+  }
+};
+
 export const getAllDiSan = async (req, res) => {
   try {
     const disan = await DiSan.findAll();
@@ -76,7 +99,7 @@ export const getAllDiSan = async (req, res) => {
   }
 };
 
-export const deleteDiSan= async (req, res) => {
+export const deleteDiSan = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
 
@@ -85,7 +108,7 @@ export const deleteDiSan= async (req, res) => {
         message: "id ko ton tai!",
       });
     }
-    const disan= await DiSan.findByPk(id);
+    const disan = await DiSan.findByPk(id);
     if (!disan) {
       return res.status(404).json({
         message: "di sản ko ton tai",
@@ -103,11 +126,11 @@ export const deleteDiSan= async (req, res) => {
   }
 };
 
-
 export const updateDiSan = async (req, res) => {
   try {
     const id = parseInt(req.params.id);
-    const { tieu_de_vi,
+    const {
+      tieu_de_vi,
       tieu_de_en,
       slug,
       tom_tat_vi,
@@ -115,7 +138,8 @@ export const updateDiSan = async (req, res) => {
       noi_dung_vi,
       noi_dung_en,
       hinh_anh,
-    danh_muc_id } = req.body;
+      danh_muc_id,
+    } = req.body;
     if (!id) {
       return res.status(400).json({
         message: "id ko ton tai!",
@@ -136,7 +160,7 @@ export const updateDiSan = async (req, res) => {
       noi_dung_vi,
       noi_dung_en,
       hinh_anh,
-      danh_muc_id
+      danh_muc_id,
     });
 
     return res.status(200).json({
