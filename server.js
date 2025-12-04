@@ -7,6 +7,8 @@ import { fileURLToPath } from "url";
 import UserRoutes from "./src/routes/UserRoutes.js";
 import DitichRoutes from "./src/routes/DitichRoutes.js";
 import DisanRoute from "./src/routes/DisanRoute.js"
+import DatveRoute from "./src/routes/DatveRoute.js"
+import VeRoute from './src/routes/VeRoute.js'
 // Tạo app Express
 const app = express();
 dotenv.config();
@@ -34,6 +36,8 @@ app.use(express.static("public"));
 app.use("/", UserRoutes);
 app.use("/api/ditich", DitichRoutes);
 app.use("/api/disan", DisanRoute);
+app.use("/api/datve", DatveRoute);
+app.use("/api/ve", VeRoute);
 
 // Cấu hình view engine
 app.set("view engine", "ejs");
