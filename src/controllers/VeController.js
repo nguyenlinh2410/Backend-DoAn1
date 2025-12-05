@@ -43,3 +43,44 @@ export const createVe = async (req, res) => {
     console.log(e);
   }
 };
+
+export const getAllVe = async (req, res) => {
+  try {
+    const ve = await VeThamQuan.findAll();
+    res.status(200).json(ve);
+  } catch (e) {
+    console.error("Lỗi lấy danh sách ve:", e);
+    res.status(500).json({
+      message: "Loi sever ko lay dc ds",
+    });
+  }
+};
+
+
+export const deleteVe = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+
+    if (!id) {
+      return res.status(200).json({
+        message: "id ko ton tai!",
+      });
+    }
+    const ve = await VeThamQuan.findByPk(id);
+    if (!ve) {
+      return res.status(404).json({
+        message: "ve ko ton tai",
+      });
+    }
+    await VeThamQuan.destroy({ where: { id } });
+    res.status(200).json({
+      message: " delete ve sucessfull",
+    });
+  } catch (e) {
+    console.error("Loi khi xoa", e);
+    res.status(500).json({
+      message: "error Server",
+    });
+  }
+};
+
