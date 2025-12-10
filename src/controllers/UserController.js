@@ -24,6 +24,45 @@ export const createLienHe = async (req, res) => {
   }
 };
 
+export const getAllLienHe = async (req, res) => {
+  try {
+    const users = await LienHe.findAll();
+    res.status(200).json(users);
+  } catch (e) {
+    console.error("Lỗi lấy danh sách lien he:", e);
+    res.status(500).json({
+      message: "Loi sever ko lay dc ds",
+    });
+  }
+};
+
+export const deleteLienHe = async (req, res) => {
+  try {
+    const id = parseInt(req.params.id);
+
+    if (!id) {
+      return res.status(200).json({
+        message: "id ko ton tai!",
+      });
+    }
+    const user = await LienHe.findByPk(id);
+    if (!user) {
+      return res.status(404).json({
+        message: "user ko ton tai",
+      });
+    }
+    await LienHe.destroy({ where: { id } });
+    res.status(200).json({
+      message: " delete user sucessfull",
+    });
+  } catch (e) {
+    console.error("Loi khi xoa", e);
+    res.status(500).json({
+      message: "error Server",
+    });
+  }
+};
+
 
 export const createUser = async (req, res) => {
   try {

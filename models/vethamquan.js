@@ -99,6 +99,11 @@ VeThamQuan.init(
                 msg:'phai chon tuyen tham quan'
             }
         }
+    },
+    trang_thai:{
+        type:DataTypes.ENUM('cho_xac_nhan','da_xac_nhan','da_huy'),
+        allowNull:false,
+        defaultValue:'cho_xac_nhan'
     }
     
   },

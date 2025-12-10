@@ -25,7 +25,11 @@ export async function up(queryInterface, Sequelize) {
       onUpdate: "CASCADE",
       onDelete: "SET NULL",
     },
-
+    trang_thai: {
+      type: Sequelize.ENUM("cho_xac_nhan", "da_xac_nhan", "da_huy"),
+      allowNull: false,
+      defaultValue: "cho_xac_nhan",
+    },
     createdAt: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
     updatedAt: { type: Sequelize.DATE, defaultValue: Sequelize.NOW },
   });

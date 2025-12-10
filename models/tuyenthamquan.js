@@ -1,7 +1,14 @@
 import { Model, DataTypes } from "sequelize";
 import { sequelize } from "../config/db.js";
 
-class TuyenThamQuan extends Model {}
+class TuyenThamQuan extends Model {
+  static associate(models) {
+    TuyenThamQuan.hasMany(models.VeThamQuan, {
+      foreignKey: "tuyen_tham_quan_id",
+      as: "ve_tham_quans",
+    });
+  }
+}
 
 TuyenThamQuan.init(
   {

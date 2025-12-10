@@ -9,6 +9,7 @@ import DitichRoutes from "./src/routes/DitichRoutes.js";
 import DisanRoute from "./src/routes/DisanRoute.js"
 import DatveRoute from "./src/routes/DatveRoute.js"
 import VeRoute from './src/routes/VeRoute.js'
+import './models/index.js'
 // Tạo app Express
 const app = express();
 dotenv.config();
