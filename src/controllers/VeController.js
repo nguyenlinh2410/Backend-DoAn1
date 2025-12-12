@@ -13,7 +13,6 @@ export const createVe = async (req, res) => {
       ngay_dat,
       tuyen_tham_quan_id,
     } = req.body;
-
     //validate
     if (!ho_ten_khach || !sdt || !ngay_dat || !tuyen_tham_quan_id) {
       return res.status(400).json({
@@ -21,22 +20,17 @@ export const createVe = async (req, res) => {
         message: "Vui long dien day du thong tin bat buoc",
       });
     }
-
     if (so_nguoi_lon === 0 && so_tre_em === 0) {
       return res.status(400).json({
         success: false,
         message: "Phai co it nhat 1 ng lon hoac 1 tre em",
       });
     }
-
     //lay thong tin tuyen de tinh tien
     const tuyen = await TuyenThamQuan.findByPk(tuyen_tham_quan_id);
     if (!tuyen) {
       return res.status(404).json({ message: "Tuyen ko ton tai" });
     }
-
-    
-
     //tinh tong tien
     const tong_tien =
       so_nguoi_lon * tuyen.gia_nguoi_lon + so_tre_em * tuyen.gia_tre_em;
@@ -64,7 +58,6 @@ export const createVe = async (req, res) => {
         },
       ],
     });
-
     res.status(201).json({
       success: true,
       message: "Ticket created successfully",

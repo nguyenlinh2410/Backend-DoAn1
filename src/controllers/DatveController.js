@@ -128,7 +128,7 @@ export const updateTuyen = async (req, res) => {
     };
 
     if (req.file) {
-      updateData.hinh_anh= req.file.buffer;
+      updateData.hinh_anh = req.file.buffer;
     }
 
     await tuyen.update(updateData);
@@ -137,7 +137,6 @@ export const updateTuyen = async (req, res) => {
       message: "Cập nhật tuyến thành công",
       data: tuyen,
     });
-
   } catch (err) {
     console.error("Lỗi update tuyến:", err);
     res.status(500).json({ message: "Lỗi server update tuyến" });
